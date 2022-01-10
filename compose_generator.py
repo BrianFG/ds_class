@@ -9,7 +9,7 @@ def create_service_data(service_number):
         service_name: {
             'build': './',
             'ports': [f'{port_number}:8888'],
-            'volumes': ['./src:/home/ucla/src:ro', './workspaces/a:/home/ucla/my_workspace'],
+            'volumes': ['./src:/home/ucla/src:ro', f'./workspaces/workspace_{service_number}:/home/ucla/my_workspace'],
             'environment': [f'JUPYTER_TOKEN=${{JUPYTER_PASSWORD}}_{service_number}']
         }
     }
@@ -18,7 +18,7 @@ master_server_data = {
     'master': {
         'build': './',
         'ports': ['8888:8888'],
-        'volumes': ['./src:/home/ucla/src:ro', './workspaces/a:/home/ucla/my_workspace'],
+        'volumes': ['./src:/home/ucla/src', './workspaces:/home/ucla/workspaces'],
         'environment': ['JUPYTER_TOKEN=${JUPYTER__MASTER_PASSWORD}']
     }
 }
